@@ -4,16 +4,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.swaglabs</groupId>
-    <artifactId>swaglabs_automation</artifactId>
+    <groupId>org.backbase</groupId>
+    <artifactId>computers_database_automation</artifactId>
     <version>1.0.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>3.141.59</selenium.version>
         <cucumber.version>4.8.1</cucumber.version>
         <cucumber.filter></cucumber.filter>
-        <cucumber.options>src/test/resources/features --glue org/swaglabs ${cucumber.filter} -t 'not @Bug' -p 'html:target/cucumber-reports'</cucumber.options>
-        <base.url>https://www.saucedemo.com/index.html</base.url>
+        <cucumber.options>src/test/resources/features --glue org/backbase ${cucumber.filter} -t 'not @Bug' -p 'json:target/cucumber.json' -p 'pretty'</cucumber.options>
+        <base.url>https://computer-database.herokuapp.com/</base.url>
     </properties>
 
     <profiles>
@@ -74,6 +74,13 @@
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
         </dependency>
+
+        <!-- API -->
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>retrofit</artifactId>
+            <version>2.0.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -84,25 +91,47 @@
             </resource>
         </resources>
         <plugins>
+            <!-- Runner -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
                 <configuration>
                     <useSystemClassLoader>false</useSystemClassLoader>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
+                    <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
+
+            <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.7.0</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>8</source>
+                    <target>8</target>
                 </configuration>
+            </plugin>
+
+            <!-- Reporting -->
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>3.15.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>ComputersDatabase</projectName>
+                            <outputDirectory>${project.build.directory}/report</outputDirectory>
+                            <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

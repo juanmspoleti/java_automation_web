@@ -1,15 +1,20 @@
-package org.swaglabs.core;
+package org.backbase.core;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 
+import java.util.concurrent.TimeUnit;
+
+/**
+ * Create, get and dismiss the driver
+ */
 public class DriverService {
 
     private static WebDriver driver;
 
     private static WebDriver createDriver() {
         ProjectTypeEnum projectType = ProjectTypeEnum.get(PropertyManager.getProperty("platform"));
-        WebDriverManager.getInstance(projectType.getDriver()).setup();
+        WebDriverManager.getInstance(projectType.getDriverClass()).setup();
         return projectType.initDriver();
     }
 
@@ -18,10 +23,12 @@ public class DriverService {
         driver = null;
     }
 
-    public static WebDriver getDriverInstance() {
+    public static WebDriver getInstance() {
         if (driver == null) {
             driver = createDriver();
             driver.manage().window().maximize();
+            driver.manage().timeouts().pageLoadTimeout(1, TimeUnit.SECONDS);
+            driver.manage().timeouts().setScriptTimeout(1, TimeUnit.SECONDS);
         }
         return driver;
     }

@@ -1,15 +1,18 @@
-package org.swaglabs.core;
+package org.backbase.core;
 
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+/**
+ * If we needed, we can add a method to return the DesiredCapabilities, but in this project, is not necessary for now.
+ */
 public enum ProjectTypeEnum {
 
     CHROME {
         @Override
-        public Class<? extends WebDriver> getDriver() {
+        public Class<? extends WebDriver> getDriverClass() {
             return ChromeDriver.class;
         }
 
@@ -20,7 +23,7 @@ public enum ProjectTypeEnum {
     },
     FIREFOX {
         @Override
-        public Class<? extends WebDriver> getDriver() {
+        public Class<? extends WebDriver> getDriverClass() {
             return FirefoxDriver.class;
         }
 
@@ -30,7 +33,7 @@ public enum ProjectTypeEnum {
         }
     };
 
-    public abstract Class<? extends WebDriver> getDriver();
+    public abstract Class<? extends WebDriver>  getDriverClass();
 
     public abstract WebDriver initDriver();
 
@@ -38,7 +41,7 @@ public enum ProjectTypeEnum {
         try {
             return Enum.valueOf(ProjectTypeEnum.class, key);
         } catch (IllegalArgumentException e) {
-            throw new RuntimeException("Invalid value for enum ProjectTypeEnum : " + key);
+            throw new RuntimeException("Invalid value for enum ProjectTypeEnum : ".concat(key));
         }
     }
 
