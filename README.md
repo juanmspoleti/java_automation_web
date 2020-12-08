@@ -42,6 +42,7 @@ For example: mvn clean test -Pfirefox
 
 ## Reports
 The report, once we run the test, is located in target/report/overview-features.html
+
 ![Overview](docs/report1.png)
 
 ![Feature](docs/report2.png)
