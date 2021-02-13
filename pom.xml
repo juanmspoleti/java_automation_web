@@ -12,7 +12,7 @@
         <selenium.version>3.141.59</selenium.version>
         <cucumber.version>4.8.1</cucumber.version>
         <cucumber.filter></cucumber.filter>
-        <cucumber.options>src/test/resources/features --glue org/backbase ${cucumber.filter} -t 'not @Bug' -p 'json:target/cucumber.json' -p 'pretty'</cucumber.options>
+        <cucumber.options>src/test/resources/features --glue org/backbase ${cucumber.filter} -t 'not @Bug' -p 'html:target/cucumber-reports/cucumber.html' -p 'json:target/cucumber-reports/cucumber.json' -p 'pretty'</cucumber.options>
         <base.url>https://computer-database.herokuapp.com/</base.url>
     </properties>
 
@@ -95,14 +95,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
+                <version>3.0.0-M5</version>
                 <configuration>
-                    <useSystemClassLoader>false</useSystemClassLoader>
                     <testFailureIgnore>true</testFailureIgnore>
+                    <suiteXmlFiles>
+                      <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
-            </plugin>
+        </plugin>
 
-            <!-- Compiler -->
+        <!-- Compiler -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -117,18 +119,22 @@
             <plugin>
                 <groupId>net.masterthought</groupId>
                 <artifactId>maven-cucumber-reporting</artifactId>
-                <version>3.15.0</version>
+                <version>5.3.0</version>
                 <executions>
                     <execution>
                         <id>execution</id>
-                        <phase>test</phase>
+                        <phase>verify</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <projectName>ComputersDatabase</projectName>
-                            <outputDirectory>${project.build.directory}/report</outputDirectory>
-                            <cucumberOutput>${project.build.directory}/cucumber.json</cucumberOutput>
+                            <skip>false</skip>
+                            <outputDirectory>reports</outputDirectory>
+                            <inputDirectory>target/cucumber-reports</inputDirectory>
+                            <jsonFiles>
+                                <param>**/*.json</param>
+                            </jsonFiles>
                         </configuration>
                     </execution>
                 </executions>
