@@ -1,4 +1,4 @@
-package org.backbase.core;
+package com.example.core;
 
 
 import org.openqa.selenium.WebDriver;

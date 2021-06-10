@@ -1,4 +1,4 @@
-package org.backbase.core.api;
+package com.example.core.api;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;

@@ -1,6 +1,6 @@
-package org.backbase.models;
+package com.example.models;
 
-import org.backbase.core.Utils;
+import com.example.core.Utils;
 
 public class ComputerModel {
 

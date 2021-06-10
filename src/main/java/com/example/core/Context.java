@@ -1,4 +1,4 @@
-package org.backbase.core;
+package com.example.core;
 
 /**
  * Available variables for ScenarioContext

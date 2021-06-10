@@ -3,7 +3,7 @@
 <suite name="BDD Test Suite" verbose="1" parallel="tests" thread-count="1" configfailurepolicy="continue">
     <test name="Computers Database Tests" annotations="JDK">
         <classes>
-            <class name="org.backbase.TestNGSequentialRunner" />
+            <class name="com.example.TestNGRunner" />
         </classes>
     </test>
 </suite>

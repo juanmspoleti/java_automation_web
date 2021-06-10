@@ -1,4 +1,4 @@
-package org.backbase.core;
+package com.example.core;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;

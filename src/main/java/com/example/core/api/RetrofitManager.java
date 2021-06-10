@@ -1,6 +1,6 @@
-package org.backbase.core.api;
+package com.example.core.api;
 
-import org.backbase.core.PropertyManager;
+import com.example.core.PropertyManager;
 import retrofit2.Retrofit;
 
 public class RetrofitManager {
