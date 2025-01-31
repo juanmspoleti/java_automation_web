@@ -24,7 +24,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <cucumber.options>src/test/resources/features --glue org/backbase ${cucumber.filter} -t 'not @Bug' -p 'html:target/cucumber-reports/cucumber.html' -p 'json:target/cucumber-reports/cucumber.json' -p 'pretty'</cucumber.options>
+                <cucumber.options>src/test/resources/features --glue com/example ${cucumber.filter} -t 'not @Bug' -p 'html:target/cucumber-reports/cucumber.html' -p 'json:target/cucumber-reports/cucumber.json' -p 'pretty'</cucumber.options>
             </properties>
         </profile>
     </profiles>
@@ -40,7 +40,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>4.2.2</version>
+            <version>5.9.2</version>
         </dependency>
 
         <!-- Cucumber -->
