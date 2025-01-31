@@ -9,7 +9,7 @@
     <version>1.0.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <selenium.version>3.141.59</selenium.version>
+        <selenium.version>4.28.1</selenium.version>
         <cucumber.version>4.8.1</cucumber.version>
         <cucumber.filter></cucumber.filter>
         <cucumber.options/>
