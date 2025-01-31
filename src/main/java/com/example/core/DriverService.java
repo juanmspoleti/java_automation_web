@@ -12,7 +12,7 @@ public class DriverService {
 
     private static WebDriver createDriver() {
         ProjectTypeEnum projectType = ProjectTypeEnum.get(PropertyManager.getProperty("browser").toUpperCase());
-        WebDriverManager.getInstance(projectType.getDriverClass()).setup();
+        WebDriverManager.getInstance(projectType.getDriverClass()).clearDriverCache().setup();
         return projectType.initDriver();
     }
 
